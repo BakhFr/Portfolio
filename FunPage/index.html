@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="form-container">
+        <div class="flower-container">
+            <img class="flower" src="./fl.png">
+        </div>
+        <form class="form">
+            <label for="name">Enter your name:</label><br>
+            <input type="text" id="name" name="name" ><br>
+            <button data-modal="modal-one" type="button" onclick="openDialog(event)">Ok</button>
+        </form>
+    </div>
+
+    <div class="modal" id="modal-one">
+        <div class="modal-bg modal-exit"></div>
+        <div class="modal-container">
+          <h1 id="modal-title"></h1>
+          <h2 id="modal-text"></h2>
+          <button class="modal-close modal-exit">X</button>
+        </div>
+      </div>
+</body>
+<script src="./index.js"></script>
+</html>
