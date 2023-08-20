@@ -2,6 +2,7 @@ import "./App.css";
 import React from "react";
 import {  Route, Routes } from "react-router-dom";
 import Main from './pages/Main';
+import TaskList from './pages/TaskList';
 import './App.css';
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/task-list" element={<TaskList />} />
       </Routes>
     </div>
 

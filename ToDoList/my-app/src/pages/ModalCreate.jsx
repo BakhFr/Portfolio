@@ -7,6 +7,7 @@ import FormControl, { useFormControl } from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import FormHelperText from '@mui/material/FormHelperText';
 import { Button } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
 
 const style = {
     position: 'absolute',
@@ -35,11 +36,17 @@ function MyFormHelperText() {
 }
 
 export default function ModalCreate(props) {
-    const [form, setFormValue] = React.useState({ title: "fsdfsdf", description: "" });
+    const [form, setFormValue] = React.useState({ title: "", description: "" });
+    const navigate = useNavigate();
+
+    const toComponentList = () => {
+        navigate('/task-list');
+    }
 
     const changeFormTitle = ((event) => setFormValue((form) => ({ ...form, title: event.target.value })));
     const changeFormDescription = ((event) => setFormValue((form) => ({ ...form, description: event.target.value })));
     const handleSubmit = () => {
+        toComponentList();
         console.log('[form]', form);
     }
 
@@ -66,7 +73,7 @@ export default function ModalCreate(props) {
                         onChange={changeFormDescription}
                         value={form.description}
                     />
-                    <Button variant="contained" onClick={handleSubmit}>Contained</Button>
+                    <Button variant="contained" onClick={handleSubmit}>Add</Button>
                 </FormControl>
             </Box>
         </Modal>
