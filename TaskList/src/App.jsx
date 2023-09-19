@@ -9,7 +9,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<TaskList />} />
         <Route path="/task-list" element={<TaskList />} />
       </Routes>
     </div>
