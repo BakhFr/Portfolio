@@ -7,8 +7,8 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Checkbox from "@mui/material/Checkbox";
 import Avatar from "@mui/material/Avatar";
 
-import { useSelector, useDispatch } from 'react-redux';
-import { decrement, increment } from '../store/slice';
+import { useSelector, useDispatch } from "react-redux";
+import { addNew, deleteItem } from "../store/slice";
 
 export default function CheckboxListSecondary() {
   const [checked, setChecked] = React.useState([1]);
@@ -27,35 +27,35 @@ export default function CheckboxListSecondary() {
   };
 
   const taskList = useSelector((state) => {
-    console.log('[state]', state);
+    console.log("[state]", state);
     return state.taskList.value;
   });
   const dispatch = useDispatch();
 
   return (
-    <List
-      dense
-      sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-    >
-      {[0, 1, 2, 3].map((value) => {
-        const labelId = `checkbox-list-secondary-label-${value}`;
-        return (
-          <div>
-            <div>
+    <div>
+       <div>
               <button
                 aria-label="Increment value"
-                onClick={() => dispatch(increment())}
+                onClick={() => dispatch(addNew({id:1, title: 'new'}))}
               >
                 Increment
               </button>
-              <span>{taskList}</span>
+      
               <button
                 aria-label="Decrement value"
-                onClick={() => dispatch(decrement())}
+                onClick={() => dispatch(deleteItem(1))}
               >
                 Decrement
               </button>
             </div>
+      <List
+        dense
+        sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+      >
+        {[0, 1, 2, 3].map((value) => {
+          const labelId = `checkbox-list-secondary-label-${value}`;
+          return (
             <ListItem
               key={value}
               secondaryAction={
@@ -75,9 +75,9 @@ export default function CheckboxListSecondary() {
                 <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
               </ListItemButton>
             </ListItem>
-          </div>
-        );
-      })}
-    </List>
+          );
+        })}
+      </List>
+    </div>
   );
 }

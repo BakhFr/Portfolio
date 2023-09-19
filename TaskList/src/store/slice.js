@@ -1,30 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const taskListSlice = createSlice({
-  name: 'counter',
+  name: 'list',
   initialState: {
-    value: 0,
+    value: [],
   },
   reducers: {
-    increment: (state) => {
-        console.log('state', state);
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes.
-      // Also, no return statement is required from these functions.
-      state.value += 1
+    addNew: (state, action) => {
+      const item = action.payload;
+      const newList = [...state.value, item];
+      state.value = newList;
     },
-    decrement: (state) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
+    deleteItem:  (state, action) => {
+      debugger;
+      const id = +action.payload;
+      const index = state.value.findIndex(item => item.id === id);
+      const newList = [...state.value];
+      newList.splice(index, 1);
+      state.value.splice(index, 1);
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = taskListSlice.actions
+export const { addNew, deleteItem  } = taskListSlice.actions;
 
-export default taskListSlice.reducer
+export default taskListSlice.reducer;
