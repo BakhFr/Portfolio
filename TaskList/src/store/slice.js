@@ -13,12 +13,17 @@ export const taskListSlice = createSlice({
       state.value = newList;
     },
     deleteItem:  (state, action) => {
-      debugger;
       const id = +action.payload;
       const index = state.value.findIndex(item => item.id === id);
-      const newList = [...state.value];
-      newList.splice(index, 1);
       state.value.splice(index, 1);
+    },
+    updateItem: (state, action)=> {
+      const itemUpdate = action.payload;
+      const index = state.value.findIndex(item => item.id === itemUpdate.id);
+      state.value.splice(index, 1, itemUpdate);
+    },
+    deleteAll: (state) => {
+      state.value = [];
     },
   },
 })
