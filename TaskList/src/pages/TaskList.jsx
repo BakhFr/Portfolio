@@ -27,7 +27,6 @@ export default function CheckboxListSecondary() {
   };
 
   const taskList = useSelector((state) => {
-    console.log("[state]", state);
     return state.taskList.value;
   });
   const dispatch = useDispatch();
@@ -53,7 +52,7 @@ export default function CheckboxListSecondary() {
         dense
         sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
       >
-        {[0, 1, 2, 3].map((value) => {
+        {taskList.map((value) => {
           const labelId = `checkbox-list-secondary-label-${value}`;
           return (
             <ListItem

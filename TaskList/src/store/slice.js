@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import data from '../db/taskList.json';
 
 export const taskListSlice = createSlice({
   name: 'list',
   initialState: {
-    value: [],
+    value: data,
   },
   reducers: {
     addNew: (state, action) => {
