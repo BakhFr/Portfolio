@@ -7,11 +7,14 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Checkbox from "@mui/material/Checkbox";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import WorkIcon from "@mui/icons-material/Work";
 
+import './TaskList.css';
+
 import { useSelector, useDispatch } from "react-redux";
-import { addNew, deleteItem } from "../store/slice";
+import { deleteItem, deleteAll } from "../store/slice";
 
 export default function CheckboxListSecondary() {
   const [checked, setChecked] = React.useState([1]);
@@ -36,6 +39,8 @@ export default function CheckboxListSecondary() {
 
   return (
     <div>
+      <Button className="button-create" variant="outlined">Create</Button>
+      <Button variant="contained" onClick={() => dispatch(deleteAll())}>Delete All</Button>
       <List
         dense
         sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
@@ -48,7 +53,7 @@ export default function CheckboxListSecondary() {
               secondaryAction={
                 <div>
                   <IconButton
-                    onClick={() => dispatch(deleteItem(1))}
+                    onClick={() => dispatch(deleteItem(value.id))}
                     edge="end"
                     aria-label="delete"
                   >
