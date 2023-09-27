@@ -1,17 +1,17 @@
 [
   {
     "id": 1,
-    "title": "task1",
+    "title": "Task1",
     "description": "The RTK Usage Guide docs page explains the standard usage patterns for each of RTK's APIs. The API Reference section describes each API function and has additional usage examples."
   },
   {
     "id": 2,
-    "title": "task2",
+    "title": "Task2",
     "description": "The RTK Usage Guide docs page explains the standard usage patterns for each of RTK's APIs. The API Reference section describes each API function and has additional usage examples."
   },
   {
     "id": 3,
-    "title": "task3",
+    "title": "Task3",
     "description": "We previously had a set of Basic/Intermediate/Advanced tutorials directly in the Redux Toolkit docs. They were helpful, but we've removed them in favor of pointing."
   }
 ]

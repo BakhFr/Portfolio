@@ -6,6 +6,9 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Checkbox from "@mui/material/Checkbox";
 import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import WorkIcon from "@mui/icons-material/Work";
 
 import { useSelector, useDispatch } from "react-redux";
 import { addNew, deleteItem } from "../store/slice";
@@ -22,56 +25,52 @@ export default function CheckboxListSecondary() {
     } else {
       newChecked.splice(currentIndex, 1);
     }
-
     setChecked(newChecked);
   };
 
+
+  const dispatch = useDispatch();
   const taskList = useSelector((state) => {
     return state.taskList.value;
   });
-  const dispatch = useDispatch();
 
   return (
     <div>
-       <div>
-              <button
-                aria-label="Increment value"
-                onClick={() => dispatch(addNew({id:1, title: 'new'}))}
-              >
-                Increment
-              </button>
-      
-              <button
-                aria-label="Decrement value"
-                onClick={() => dispatch(deleteItem(1))}
-              >
-                Decrement
-              </button>
-            </div>
       <List
         dense
         sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
       >
         {taskList.map((value) => {
-          const labelId = `checkbox-list-secondary-label-${value}`;
+          const labelId = `checkbox-list-secondary-label-${value.id}`;
           return (
             <ListItem
-              key={value}
+              key={value.id}
               secondaryAction={
-                <Checkbox
-                  edge="end"
-                  onChange={handleToggle(value)}
-                  checked={checked.indexOf(value) !== -1}
-                  inputProps={{ "aria-labelledby": labelId }}
-                />
+                <div>
+                  <IconButton
+                    onClick={() => dispatch(deleteItem(1))}
+                    edge="end"
+                    aria-label="delete"
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                  <Checkbox
+                    edge="end"
+                    onChange={handleToggle(value)}
+                    checked={checked.indexOf(value) !== -1}
+                    inputProps={{ "aria-labelledby": labelId }}
+                  />
+                </div>
               }
               disablePadding
             >
               <ListItemButton>
                 <ListItemAvatar>
-                  <Avatar src={`../assets/task.png`} />
+                  <Avatar>
+                    <WorkIcon />
+                  </Avatar>
                 </ListItemAvatar>
-                <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
+                <ListItemText id={labelId} primary={value?.title || "Task"} />
               </ListItemButton>
             </ListItem>
           );
